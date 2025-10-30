@@ -16,6 +16,9 @@ If I made a 2.0, I would add more pictures and images as well as talking with mo
 
 Our mission is to provide seniors with reliable, local help while offering students valuable work experience, income, and a chance to engage positively with their community.
 
+Check out the app live!
+https://ry-backend--rylan-app-project.us-central1.hosted.app/
+
 ---
 
 ## ✨ Features
@@ -35,18 +38,6 @@ Our mission is to provide seniors with reliable, local help while offering stude
 
 ---
 
-## 🛠️ Technology Stack (Placeholder)
-
-This section should be updated with the actual technologies and languages used to build the application.
-
-| Area | Technologies (Example) |
-| :--- | :--- |
-| **Frontend** | React Native / Flutter (for mobile) |
-| **Backend** | Node.js (Express) / Python (Django) |
-| **Database** | PostgreSQL / MongoDB |
-| **Payment** | Stripe / PayPal Integration |
-
----
 
 ## 🚀 Getting Started
 
@@ -81,26 +72,9 @@ Follow these steps to set up the project locally.
 
 ---
 
-## 🤝 Contributing
-
-Contributions are **greatly appreciated**! If you have suggestions or want to improve this project, please feel free to fork the repo and submit a pull request.
-
-1.  Fork the Project
-2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4.  Push to the Branch (`git push origin feature/AmazingFeature`)
-5.  Open a Pull Request
-
----
-
 ## 📄 License
 
 Distributed under the **MIT License**. See `LICENSE` for more information.
 
 ---
 
-## 📞 Contact
-
-Your Name - [Your Email Address]
-
-Project Link: [https://github.com/YourUsername/GenerationsConnect](https://github.com/YourUsername/GenerationsConnect)
