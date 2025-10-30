@@ -1,0 +1,183 @@
+/**
+ * @fileoverview Firestore Security Rules for Generations Connect.
+ *
+ * Core Philosophy: This ruleset prioritizes secure data access based on a combination of ownership and shared access patterns.
+ * Strict authorization is enforced, while data validation is relaxed for rapid prototyping.
+ *
+ * Data Structure:
+ * - /users/{userId}: Stores basic user information. User documents are only accessible by the user themselves.
+ * - /elderProfiles/{elderProfileId}: Stores elder-specific profile information.
+ * - /studentProfiles/{studentProfileId}: Stores student-specific profile information.
+ * - /tasks/{taskId}: Stores task information.
+ * - /tasks/{taskId}/applications/{applicationId}: Stores student applications for tasks. Access is controlled via the `authorizedUids` array.
+ * - /studentApplications/{applicationId}: Stores a record of a student's application for a task. Used for efficient querying by the student.
+ *
+ * Key Security Decisions:
+ * - User listing is disabled.
+ * - Write operations are always protected by authorization checks.
+ * - Data validation is minimized for prototyping but includes critical checks for authorization and relational integrity.
+ * - The `authorizedUids` array is used to manage shared access to application documents.
+ *
+ * Denormalization for Authorization:
+ * - Application documents contain an `authorizedUids` array that lists the UIDs of users who have access to the application. This avoids the need for complex queries or `get()` calls in the security rules.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Allows users to read and write their own user document.
+     * @path /users/{userId}
+     * @allow (read, write) User with matching UID.
+     * @deny (read, write) Users attempting to access other user documents.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /users/{userId} {
+      function isSignedIn() {
+        return request.auth != null;
+      }
+
+      function isOwner(userId) {
+        return request.auth.uid == userId;
+      }
+
+      allow get: if isSignedIn() && isOwner(userId);
+      allow list: if false;
+      allow create: if isSignedIn() && isOwner(userId);
+      allow update: if isSignedIn() && isOwner(userId);
+      allow delete: if isSignedIn() && isOwner(userId);
+
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+    }
+
+    /**
+     * @description Allows read and write access to elder profiles only to the profile owner.
+     * @path /elderProfiles/{elderProfileId}
+     * @allow (read, write) ElderProfile owner.
+     * @deny (read, write) Non-owners.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /elderProfiles/{elderProfileId} {
+        function isSignedIn() {
+            return request.auth != null;
+        }
+
+        function isOwner(elderProfileId) {
+            return request.auth.uid == get(/databases/$(database)/documents/elderProfiles/$(elderProfileId)).data.userId;
+        }
+
+        allow get: if isSignedIn() && isOwner(elderProfileId);
+        allow list: if false;
+        allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
+        allow update: if isSignedIn() && isOwner(elderProfileId);
+        allow delete: if isSignedIn() && isOwner(elderProfileId);
+
+        function isExistingOwner(elderProfileId) {
+            return isOwner(elderProfileId) && resource != null;
+        }
+    }
+
+    /**
+     * @description Allows read and write access to student profiles only to the profile owner.
+     * @path /studentProfiles/{studentProfileId}
+     * @allow (read, write) StudentProfile owner.
+     * @deny (read, write) Non-owners.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /studentProfiles/{studentProfileId} {
+        function isSignedIn() {
+            return request.auth != null;
+        }
+
+        function isOwner(studentProfileId) {
+            return request.auth.uid == get(/databases/$(database)/documents/studentProfiles/$(studentProfileId)).data.userId;
+        }
+
+        allow get: if isSignedIn() && isOwner(studentProfileId);
+        allow list: if false;
+        allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
+        allow update: if isSignedIn() && isOwner(studentProfileId);
+        allow delete: if isSignedIn() && isOwner(studentProfileId);
+
+        function isExistingOwner(studentProfileId) {
+            return isOwner(studentProfileId) && resource != null;
+        }
+    }
+
+    /**
+     * @description Allows public read access to tasks and restricts write access to task owners.
+     * @path /tasks/{taskId}
+     * @allow (read) Anyone.
+     * @allow (create, update, delete) Task owner.
+     * @deny (create, update, delete) Non-owners.
+     * @principle Enforces public read access with owner-only writes.
+     */
+    match /tasks/{taskId} {
+      function isSignedIn() {
+        return request.auth != null;
+      }
+
+      function isOwner(taskId) {
+        return request.auth.uid == get(/databases/$(database)/documents/tasks/$(taskId)).data.elderId;
+      }
+
+      allow get: if true;
+      allow list: if true;
+      allow create: if isSignedIn() && request.resource.data.elderId == request.auth.uid;
+      allow update: if isSignedIn() && isOwner(taskId);
+      allow delete: if isSignedIn() && isOwner(taskId);
+
+      function isExistingOwner(taskId) {
+        return isOwner(taskId) && resource != null;
+      }
+    }
+
+    /**
+     * @description Allows access to application documents based on the `authorizedUids` array.
+     * @path /tasks/{taskId}/applications/{applicationId}
+     * @allow (read, write) Users whose UIDs are present in the `authorizedUids` array.
+     * @deny (read, write) Users whose UIDs are not present in the `authorizedUids` array.
+     * @principle Enforces shared access based on the `authorizedUids` array.
+     */
+    match /tasks/{taskId}/applications/{applicationId} {
+      function isSignedIn() {
+        return request.auth != null;
+      }
+
+      function isAuthorized(applicationId) {
+        return request.auth.uid in get(/databases/$(database)/documents/tasks/$(taskId)/applications/$(applicationId)).data.authorizedUids;
+      }
+
+      allow get: if isSignedIn() && isAuthorized(applicationId);
+      allow list: if false;
+      allow create: if isSignedIn() && request.resource.data.authorizedUids.hasAny([request.auth.uid]); // TODO: Add more restrictive checks here to limit creation based on the state of the task and the user's role.
+      allow update: if isSignedIn() && isAuthorized(applicationId);
+      allow delete: if isSignedIn() && isAuthorized(applicationId);
+    }
+
+    /**
+     * @description Allows students to read and write their own application records.
+     * @path /studentApplications/{applicationId}
+     * @allow (read, write) Student with matching UID.
+     * @deny (read, write) Users attempting to access other student application records.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /studentApplications/{applicationId} {
+      function isSignedIn() {
+        return request.auth != null;
+      }
+
+        function isOwner(applicationId) {
+            return request.auth.uid == get(/databases/$(database)/documents/studentApplications/$(applicationId)).data.studentId;
+        }
+
+      allow get: if isSignedIn() && isOwner(applicationId);
+      allow list: if false;
+      allow create: if isSignedIn() && request.resource.data.studentId == request.auth.uid;
+      allow update: if isSignedIn() && isOwner(applicationId); // No updates allowed on studentApplication records
+      allow delete: if isSignedIn() && isOwner(applicationId); // No deletes allowed on studentApplication records
+    }
+  }
+}

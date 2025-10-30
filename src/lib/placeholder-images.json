@@ -1,0 +1,70 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-community",
+      "description": "A background image showing a sense of community, perhaps with diverse people interacting.",
+      "imageUrl": "https://images.unsplash.com/photo-1601689892697-b64daa00ff6d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb21tdW5pdHklMjBwZW9wbGV8ZW58MHx8fHwxNzYxMDU3ODg1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "community people"
+    },
+    {
+      "id": "service-yard-work",
+      "description": "Image for yard work service.",
+      "imageUrl": "https://images.unsplash.com/photo-1627740283098-1c544d3a479d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx5YXJkJTIwd29ya3xlbnwwfHx8fDE3NjEwNjEzMjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "yard work"
+    },
+    {
+      "id": "service-tech-help",
+      "description": "Image for technology assistance service.",
+      "imageUrl": "https://images.unsplash.com/photo-1750379046723-5ed69ff11571?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx0ZWNoJTIwaGVscHxlbnwwfHx8fDE3NjEwNjEzMjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tech help"
+    },
+    {
+      "id": "service-housekeeping",
+      "description": "Image for housekeeping service.",
+      "imageUrl": "https://images.unsplash.com/photo-1653990480360-31a12ce9723e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxob3VzZWtlZXBpbmclMjBjbGVhbnxlbnwwfHx8fDE3NjEwNjEzMjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "housekeeping clean"
+    },
+    {
+      "id": "service-companionship",
+      "description": "Image for companionship service.",
+      "imageUrl": "https://images.unsplash.com/photo-1631885627891-19651751251f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwZW9wbGUlMjB0YWxraW5nfGVufDB8fHx8MTc2MDk4MjUwMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "people talking"
+    },
+    {
+      "id": "service-errands",
+      "description": "Image for running errands service.",
+      "imageUrl": "https://images.unsplash.com/photo-1578916171728-46686eac8d58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxncm9jZXJ5JTIwc2hvcHBpbmd8ZW58MHx8fHwxNzYxMDExMDUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "grocery shopping"
+    },
+    {
+      "id": "service-pet-care",
+      "description": "Image for pet care service.",
+      "imageUrl": "https://images.unsplash.com/photo-1600158531196-4c5b3d578cdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxkb2clMjB3YWxraW5nfGVufDB8fHx8MTc2MTA1OTc1M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "dog walking"
+    },
+    {
+      "id": "student-helping",
+      "description": "Image for the 'For Students' section showing a picture of the Florence, Oregon bridge.",
+      "imageUrl": "https://images.unsplash.com/photo-1720986315521-6210cdbf4943?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvcmVnb24lMjBicmlkZ2V8ZW58MHx8fHwxNzYxMDYxMzIzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "oregon bridge"
+    },
+    {
+      "id": "step-1",
+      "description": "A placeholder image for the first step of 'How it Works'.",
+      "imageUrl": "https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx0YXNrJTIwbGlzdHxlbnwwfHx8fDE3NjA5NTIwMTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "task list"
+    },
+    {
+      "id": "step-2",
+      "description": "A placeholder image for the second step of 'How it Works'.",
+      "imageUrl": "https://images.unsplash.com/photo-1706508156658-f246b0c8753c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjb25uZWN0JTIwcGVvcGxlfGVufDB8fHx8MTc2MTA2Njk3Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "connect people"
+    },
+    {
+      "id": "step-3",
+      "description": "A placeholder image for the third step of 'How it Works'.",
+      "imageUrl": "https://images.unsplash.com/photo-1748361920780-2a77fdc2cd32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxoYW5kc2hha2UlMjBwYXltZW50fGVufDB8fHx8MTc2MTA2Njk3Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "handshake payment"
+    }
+  ]
+}
