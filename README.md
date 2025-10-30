@@ -1,6 +1,6 @@
 # 🔗 Generations Connect
 
-![App Screenshot or Logo Placeholder](https://via.placeholder.com/800x400?text=Generations+Connect+App+Image)
+![App Screenshot or Logo Placeholder](https://i.imgur.com/gNr8uqA.jpeg)
 
 > **🤝 Bridging the gap between generations: Connecting senior citizens with local high school students for tasks and tech assistance.**
 
