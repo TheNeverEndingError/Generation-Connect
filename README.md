@@ -8,9 +8,11 @@
 
 ## 💡 Overview
 
-**Generations Connect** is a platform designed to create a mutually beneficial relationship within the local community.
+**Generations Connect** is meant to help connect highschoolers and senior citizens in communities. It was built for the Congressinal App Challenge 2025, for Oregon district 4
 
-**Senior citizens** (Elders) can easily post various tasks—from **yard work** and **errands** to **basic home repairs** and critical **technology assistance**. **High school students** in the area can browse, accept these jobs, and earn money on a flexible schedule.
+**Senior citizens** (Elders) can easily post various tasks—from **yard work** and **errands** to **companionship** and **technology assistance**. **High school students** can be hired for these jobs, and earn money on a flexible schedule.
+
+If I made a 2.0, I would add more pictures and images as well as talking with more elders and students to gather more information and data on how I could better the app. I would also try it market it too retirement and assisted living homes to better help my community. I would also make easier account setups for elders and students.
 
 Our mission is to provide seniors with reliable, local help while offering students valuable work experience, income, and a chance to engage positively with their community.
 
