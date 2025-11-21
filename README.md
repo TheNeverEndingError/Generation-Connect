@@ -52,7 +52,7 @@ Follow these steps to set up the project locally.
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/YourUsername/GenerationsConnect.git](https://github.com/YourUsername/GenerationsConnect.git)
+    git clone [https://github.com/TheNeverEndingError/Generation-Connect.git](https://github.com/TheNeverEndingError/Generation-Connect.git)
     cd GenerationsConnect
     ```
 2.  **Install backend and frontend dependencies:**
